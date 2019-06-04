@@ -3,6 +3,7 @@ jobs:
   build:
     machine: true
     environment:
+      GIT_USER: 'eole-developer'
       PJ_NAME: 'react-formio'
       FORK_URL: 'https://github.com/eole-repos'
       ORIG_URL: 'https://github.com/formio'
@@ -11,6 +12,7 @@ jobs:
           fingerprints:
                   - 'ed:9e:5c:c2:ba:03:1d:ae:56:0a:94:0f:cc:e9:b1:f1'
       - checkout
+      - run: git config user.name $GIT_USER
       - run: git clone $FORK_URL/$PJ_NAME
         #- run: echo "git clone $FORK_URL/$PJ_NAME"
       - run: cd  $PJ_NAME
