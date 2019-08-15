@@ -69,6 +69,23 @@ export default class FormEdit extends Component {
     });
   }
 
+  formChange = (form) => {
+    this.setState({
+      form,
+    });
+  };
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    // Only update if key form info has changed. The builder handles form component changes itself.
+    return (
+      this.state.form.title !== nextState.form.title ||
+      this.state.form.name !== nextState.form.name ||
+      this.state.form.path !== nextState.form.path ||
+      this.state.form.display !== nextState.form.display ||
+      this.state.form.type !== nextState.form.type
+    );
+  }
+
   render() {
     const {form} = this.state;
     const {saveText} = this.props;
@@ -165,6 +182,7 @@ export default class FormEdit extends Component {
           form={form}
           options={this.props.options}
           builder={this.props.builder}
+          onChange={this.formChange}
         />
       </div>
     );
